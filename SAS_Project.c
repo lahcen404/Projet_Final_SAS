@@ -1,5 +1,15 @@
 #include <stdio.h>
+#define MAX 100
 
+typedef struct {
+    int id;
+    char nom[50];
+    char prenom[50];
+    int numeroMaillot;
+    char poste[20];
+    int age;
+    int buts;
+} Joueur;
 
 int main(){
 
