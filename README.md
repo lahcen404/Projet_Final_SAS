@@ -13,7 +13,7 @@ Elle repose sur un menu interactif permettant à l’utilisateur de naviguer fac
 ## 🎯 Objectifs du projet
 
 * Gérer une équipe de football à travers une application console.
-* Appliquer les notions de programmation en **C** (ou autre langage utilisé).
+* Appliquer les notions de programmation en **C** .
 * Manipuler les **structures**, **tableaux dynamiques**, **algorithmes de recherche et tri**.
 * Utiliser des **fichiers** pour sauvegarder les données (bonus).
 
