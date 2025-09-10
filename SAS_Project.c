@@ -18,7 +18,7 @@ Joueur joueurs[MAX];
 int countJoueurs = 0;
 
 // ajouter un joueur
-void ajouterUnJoueur()
+void ajouterSeulJoueur()
 {
 
     joueurs[countJoueurs].id = countJoueurs + 1;
@@ -65,8 +65,39 @@ void ajouterPlusieurJoueurs()
     for (int i = 0; i < n; i++)
     {
         printf("\n Joueur %d\n", i + 1);
-        ajouterUnJoueur();
+        ajouterSeulJoueur();
     }
+}
+
+// function Main Ajouter 
+void ajouterJoueur(){
+
+    int ajoutChoix;
+
+    printf("\n1 - Ajouter un nouveau joueur\n");
+            printf("2 - Ajouter plusieur joueurs\n");
+            printf("3 - Quit\n");
+
+            scanf("%d", &ajoutChoix);
+            getchar();
+            switch (ajoutChoix)
+            {
+            case 1:
+                ajouterSeulJoueur();
+                break;
+
+            case 2:
+                ajouterPlusieurJoueurs();
+                break;
+
+            case 3:
+                printf("Quit !\n");
+                break;
+
+            default:
+                printf("Choix invalide !\n");
+                break;
+            }
 }
 
 // afficher joueurs
@@ -100,6 +131,12 @@ void afficherJoueurs()
 int rechercherJoueurNom(char nomRecherche[50])
 {
 
+     if (countJoueurs == 0)
+    {
+        printf("\n ---------- Aucun joueur--------- !!\n");
+        return;
+    }
+
     printf("Entrez le nom du joueur : ");
     fgets(nomRecherche, sizeof(nomRecherche), stdin);
     nomRecherche[strcspn(nomRecherche, "\n")] = '\0';
@@ -132,6 +169,12 @@ int rechercherJoueurNom(char nomRecherche[50])
 int rechercherJoueurId(int idRecherche)
 {
 
+    if (countJoueurs == 0)
+    {
+        printf("\n ---------- Aucun joueur--------- !!\n");
+        return;
+    }
+
     printf("Entrez l' ID du joueur : ");
     scanf("%d", &idRecherche);
     getchar();
@@ -160,123 +203,14 @@ int rechercherJoueurId(int idRecherche)
     return -1;
 }
 
-// trier par age
-void trierParAge(){
+// Recherche Main Function 
+void rechercheFunction(){
 
-for (int i = 0; i < countJoueurs -1; i++)
-{
-    for (int j = 0; j < countJoueurs - i - 1; j++)
-    {
-       if (joueurs[j].age>joueurs[j+1].age)
-       {
-        int temp = joueurs[j].age;
-        joueurs[j].age = joueurs[j+1].age;
-        joueurs[j+1].age = temp;
-       }
-       
-    }
-    
-}
-
-afficherJoueurs();
-
-
-}
-
-// trier par nom
-void trierParNom(){
-char temp[MAX];
-for (int i = 0; i < countJoueurs -1; i++)
-{
-    for (int j = 0; j < countJoueurs - i - 1; j++)
-    {
-       if (_stricmp(joueurs[j].nom,joueurs[j+1].nom) > 0)
-       {
-        strcpy(temp,joueurs[j].nom);
-        strcpy(joueurs[j].nom, joueurs[j+1].nom);
-        strcpy(joueurs[j+1].nom, temp);
-       }
-       
-    }
-    
-}
-
-afficherJoueurs();
-
-
-}
-
-int main()
-{
-
-    int ajoutChoix;
-
-    char nomRecherche[50];
+     char nomRecherche[50];
     int idRecherche;
     int rechercheChoix;
 
-    int choix;
-    do
-    {
-        printf("\n-----------------------------------\n");
-        printf("\n--- Gestion Equipe de Football ---\n");
-        printf("\n-----------------------------------\n");
-        printf("1 - Ajouter joueur\n");
-        printf("2 - Modifier joueur\n");
-        printf("3 - Supprimer joueur\n");
-        printf("4 - Afficher joueurs\n");
-        printf("5 - Trier joueurs\n");
-        printf("6 - Rechercher joueur\n");
-        printf("7 - Statistiques\n");
-        printf("8 - Quitter\n");
-        printf("Entrez votre choix : \n");
-        scanf("%d", &choix);
-        getchar();
-
-        switch (choix)
-        {
-        case 1:
-
-            printf("\n1 - Ajouter un nouveau joueur\n");
-            printf("2 - Ajouter plusieur joueurs\n");
-            printf("3 - Quit\n");
-
-            scanf("%d", &ajoutChoix);
-            getchar();
-            switch (ajoutChoix)
-            {
-            case 1:
-                ajouterUnJoueur();
-                break;
-
-            case 2:
-                ajouterPlusieurJoueurs();
-                break;
-
-            case 3:
-                printf("Quit !\n");
-                break;
-
-            default:
-                printf("Choix invalide !\n");
-                break;
-            }
-            break;
-
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            afficherJoueurs();
-            break;
-        case 5:
-            trierParNom();
-            break;
-
-        case 6:
-
-            printf("\n1 - Recherche par Nom\n");
+    printf("\n1 - Recherche par Nom\n");
             printf("2 - Recherche par ID\n");
             printf("3 - Quit\n");
 
@@ -300,6 +234,118 @@ int main()
                 printf("Choix invalide !\n");
                 break;
             }
+}
+// trier par age
+void trierParAge(){
+
+ if (countJoueurs == 0)
+    {
+        printf("\n ---------- Aucun joueur--------- !!\n");
+        return;
+    }
+
+for (int i = 0; i < countJoueurs -1; i++)
+{
+    for (int j = 0; j < countJoueurs - i - 1; j++)
+    {
+       if (joueurs[j].age>joueurs[j+1].age)
+       {
+        int temp = joueurs[j].age;
+        joueurs[j].age = joueurs[j+1].age;
+        joueurs[j+1].age = temp;
+       }
+       
+    }
+    
+}
+
+        printf("\n-----------------------------------\n");
+        printf("\n--- Listes Joueurs Trier Par Age ---\n");
+        printf("\n-----------------------------------\n");
+
+afficherJoueurs();
+
+
+}
+
+// trier par nom
+void trierParNom(){
+    
+ if (countJoueurs == 0)
+    {
+        printf("\n ---------- Aucun joueur--------- !!\n");
+        return;
+    }
+
+char temp[MAX];
+for (int i = 0; i < countJoueurs -1; i++)
+{
+    for (int j = 0; j < countJoueurs - i - 1; j++)
+    {
+       if (_stricmp(joueurs[j].nom,joueurs[j+1].nom) > 0)
+       {
+        strcpy(temp,joueurs[j].nom);
+        strcpy(joueurs[j].nom, joueurs[j+1].nom);
+        strcpy(joueurs[j+1].nom, temp);
+       }
+       
+    }
+    
+}
+
+        printf("\n-----------------------------------\n");
+        printf("\n--- Listes Joueurs Trier Par Nom ---\n");
+        printf("\n-----------------------------------\n");
+
+afficherJoueurs();
+
+
+}
+
+int main()
+{
+
+
+    int choix;
+    do
+    {
+        printf("\n-----------------------------------\n");
+        printf("\n--- Gestion Equipe de Football ---\n");
+        printf("\n-----------------------------------\n");
+        printf("1 - Ajouter joueur\n");
+        printf("2 - Modifier joueur\n");
+        printf("3 - Supprimer joueur\n");
+        printf("4 - Afficher joueurs\n");
+        printf("5 - Trier joueurs\n");
+        printf("6 - Rechercher joueur\n");
+        printf("7 - Statistiques\n");
+        printf("8 - Quitter\n");
+        printf("Entrez votre choix : \n");
+        scanf("%d", &choix);
+        getchar();
+
+        switch (choix)
+        {
+        case 1:
+            ajouterJoueur();
+            break;
+
+        case 2:
+            break;
+
+        case 3:
+            break;
+
+        case 4:
+            afficherJoueurs();
+            break;
+
+        case 5:
+            trierParNom();
+            break;
+
+        case 6:
+            rechercheFunction();
             break;
 
         case 7:
