@@ -303,9 +303,7 @@ afficherJoueurs();
 // trier par Poste ( Gardien )
 void trierParPosteGardien(){
 
-    
-    char choixPoste[MAX];
- 
+     
     if (countJoueurs == 0)
     {
         printf("\n ---------- Aucun joueur--------- !!\n");
@@ -313,17 +311,11 @@ void trierParPosteGardien(){
     }
 
 
-
-     printf("Entrer le poste de joueur :\n");
-    fgets(choixPoste, sizeof(choixPoste), stdin);
-    choixPoste[strcspn(choixPoste, "\n")] = '\0'; // removee enter key from the end
-
-
 for (int i = 0; i < countJoueurs -1; i++)
 {
     for (int j = 0; j < countJoueurs - i - 1; j++)
     {
-       if (_stricmp(joueurs[j].poste,choixPoste) != 0 && _stricmp(joueurs[j+1].poste,choixPoste) == 0)
+       if (_stricmp(joueurs[j].poste,"gardien") != 0 && _stricmp(joueurs[j+1].poste,"gardien") == 0)
        {
         Joueur temp = joueurs[j];
         joueurs[j] = joueurs[j+1];
@@ -337,6 +329,44 @@ for (int i = 0; i < countJoueurs -1; i++)
 
         printf("\n-------------------------------------------\n");
         printf("\n--- Listes Joueurs Trier Par Poste Gardien ---\n");
+        printf("\n-------------------------------------------\n");
+
+afficherJoueurs();
+
+
+}
+
+
+
+// trier par Poste ( defenseur )
+void trierParPosteDefenseur(){
+
+     
+    if (countJoueurs == 0)
+    {
+        printf("\n ---------- Aucun joueur--------- !!\n");
+        return;
+    }
+
+
+for (int i = 0; i < countJoueurs -1; i++)
+{
+    for (int j = 0; j < countJoueurs - i - 1; j++)
+    {
+       if (_stricmp(joueurs[j].poste,"defenseur") != 0 && _stricmp(joueurs[j+1].poste,"defenseur") == 0)
+       {
+        Joueur temp = joueurs[j];
+        joueurs[j] = joueurs[j+1];
+        joueurs[j+1]= temp;
+
+       }
+       
+    }
+    
+}
+
+        printf("\n-------------------------------------------\n");
+        printf("\n--- Listes Joueurs Trier Par Poste Defenseur ---\n");
         printf("\n-------------------------------------------\n");
 
 afficherJoueurs();
