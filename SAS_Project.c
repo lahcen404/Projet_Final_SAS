@@ -17,8 +17,6 @@ typedef struct
 Joueur joueurs[MAX];
 int countJoueurs = 0;
 
-
-
 // ajouter un joueur
 void ajouterUnJoueur()
 {
@@ -27,12 +25,11 @@ void ajouterUnJoueur()
 
     printf("Entrer le nom de joueur :\n");
     fgets(joueurs[countJoueurs].nom, sizeof(joueurs[countJoueurs].nom), stdin);
-    joueurs[countJoueurs].nom[strcspn(joueurs[countJoueurs].nom, "\n")] = '\0'; // removee enter key from the end 
-
+    joueurs[countJoueurs].nom[strcspn(joueurs[countJoueurs].nom, "\n")] = '\0'; // removee enter key from the end
 
     printf("Entrer le prenom de joueur :\n");
     fgets(joueurs[countJoueurs].prenom, sizeof(joueurs[countJoueurs].prenom), stdin);
-    joueurs[countJoueurs].prenom[strcspn(joueurs[countJoueurs].prenom, "\n")]= '\0';
+    joueurs[countJoueurs].prenom[strcspn(joueurs[countJoueurs].prenom, "\n")] = '\0';
 
     printf("Entrer le numero Maillot de joueur :\n");
     scanf("%d", &joueurs[countJoueurs].numeroMaillot);
@@ -40,8 +37,7 @@ void ajouterUnJoueur()
 
     printf("Entrer le poste de joueur ([G] = Gardien, [D] = Défenseur, [M] = Millieu,[G] = Attaquant)) :\n");
     fgets(joueurs[countJoueurs].poste, sizeof(joueurs[countJoueurs].poste), stdin);
-    joueurs[countJoueurs].poste[strcspn(joueurs[countJoueurs].poste, "\n")]= '\0';
-
+    joueurs[countJoueurs].poste[strcspn(joueurs[countJoueurs].poste, "\n")] = '\0';
 
     printf("Entrer l'age de joueur :\n");
     scanf("%d", &joueurs[countJoueurs].age);
@@ -52,6 +48,8 @@ void ajouterUnJoueur()
     getchar();
 
     countJoueurs++;
+
+    printf("\n------Ajout Successfully !!--------\n");
 }
 
 // ajouter plusieur joueurs
@@ -104,9 +102,7 @@ int rechercherJoueurNom(char nomRecherche[50])
 
     printf("Entrez le nom du joueur : ");
     fgets(nomRecherche, sizeof(nomRecherche), stdin);
-    nomRecherche[strcspn(nomRecherche, "\n")]= '\0';
-
-
+    nomRecherche[strcspn(nomRecherche, "\n")] = '\0';
 
     printf("%s", nomRecherche);
 
@@ -114,18 +110,16 @@ int rechercherJoueurNom(char nomRecherche[50])
     {
         if (strcasecmp(joueurs[i].nom, nomRecherche) == 0)
         {
-            
-                    printf("\n[Joueur %d]\n", i + 1);
-                    printf("ID              : %d\n", joueurs[i].id);
-                    printf("Nom             : %s\n", joueurs[i].nom);
-                    printf("Prenom          : %s\n", joueurs[i].prenom);
-                    printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-                    printf("Poste           : %s\n", joueurs[i].poste);
-                    printf("Age             : %d\n", joueurs[i].age);
-                    printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-                    printf("---------------------------------------\n");
-                
-            
+
+            printf("\n[Joueur %d]\n", i + 1);
+            printf("ID              : %d\n", joueurs[i].id);
+            printf("Nom             : %s\n", joueurs[i].nom);
+            printf("Prenom          : %s\n", joueurs[i].prenom);
+            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+            printf("Poste           : %s\n", joueurs[i].poste);
+            printf("Age             : %d\n", joueurs[i].age);
+            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+            printf("---------------------------------------\n");
 
             return i;
         }
@@ -134,8 +128,46 @@ int rechercherJoueurNom(char nomRecherche[50])
     return -1;
 }
 
+// recherche par Nom
+int rechercherJoueurId(int idRecherche)
+{
+
+    printf("Entrez l' ID du joueur : ");
+    scanf("%d", &idRecherche);
+    getchar();
+
+   // printf("%d", idRecherche);
+
+    for (int i = 0; i < countJoueurs; i++)
+    {
+        if (joueurs[i].id == idRecherche)
+        {
+
+            printf("\n[Joueur %d]\n", i + 1);
+            printf("ID              : %d\n", joueurs[i].id);
+            printf("Nom             : %s\n", joueurs[i].nom);
+            printf("Prenom          : %s\n", joueurs[i].prenom);
+            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+            printf("Poste           : %s\n", joueurs[i].poste);
+            printf("Age             : %d\n", joueurs[i].age);
+            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+            printf("---------------------------------------\n");
+
+            return i;
+        }
+    }
+    printf("\n-------- Joueur non trouvé !--------------\n");
+    return -1;
+}
+
 int main()
 {
+
+    int ajoutChoix;
+
+    char nomRecherche[50];
+    int idRecherche;
+    int rechercheChoix;
 
     int choix;
     do
@@ -158,7 +190,7 @@ int main()
         switch (choix)
         {
         case 1:
-            int ajoutChoix;
+
             printf("\n1 - Ajouter un nouveau joueur\n");
             printf("2 - Ajouter plusieur joueurs\n");
             printf("3 - Quit\n");
@@ -196,8 +228,31 @@ int main()
             break;
 
         case 6:
-            char nomRecherche[50];
-            rechercherJoueurNom(nomRecherche);
+
+            printf("\n1 - Recherche par Nom\n");
+            printf("2 - Recherche par ID\n");
+            printf("3 - Quit\n");
+
+            scanf("%d", &rechercheChoix);
+            getchar();
+            switch (rechercheChoix)
+            {
+            case 1:
+                rechercherJoueurNom(nomRecherche);
+                break;
+
+            case 2:
+                rechercherJoueurId(idRecherche);
+                break;
+
+            case 3:
+                printf("Quit !\n");
+                break;
+
+            default:
+                printf("Choix invalide !\n");
+                break;
+            }
             break;
 
         case 7:
