@@ -46,11 +46,32 @@ void ajouterUnJoueur(){
 }
 
 
+void afficherJoueurs() {
+    if (countJoueurs == 0) {
+        printf("\n Aucun joueur !!\n");
+        return;
+    }
 
+    printf("\n========== Liste des Joueurs ==========\n");
+
+    for (int i = 0; i < countJoueurs; i++) {
+        printf("\n[Joueur %d]\n", i + 1);
+        printf("ID              : %d\n", joueurs[i].id);
+        printf("Nom             : %s", joueurs[i].nom);
+        printf("Prenom          : %s", joueurs[i].prenom);
+        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+        printf("Poste           : %s", joueurs[i].poste);
+        printf("Age             : %d\n", joueurs[i].age);
+        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+        printf("---------------------------------------\n");
+    }
+
+    printf("=======================================\n");
+}
 
 int main(){
 ajouterUnJoueur();
-
+afficherJoueurs();
       int choix;
     do{
         printf("\n--- Gestion Equipe de Football ---\n");
