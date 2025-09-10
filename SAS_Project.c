@@ -30,7 +30,7 @@ void ajouterUnJoueur(){
     scanf("%d",&joueurs[countJoueurs].numeroMaillot);
     getchar();
 
-    printf("Entrer le poste de joueur (Gardien, Défenseur, Milieu, Attaquant)) :\n");
+    printf("Entrer le poste de joueur ([G] = Gardien, [D] = Défenseur, [M] = Millieu,[G] = Attaquant)) :\n");
     fgets(joueurs[countJoueurs].poste,sizeof(joueurs[countJoueurs].poste),stdin);
 
     printf("Entrer l'age de joueur :\n");
@@ -46,6 +46,26 @@ void ajouterUnJoueur(){
 }
 
 
+// ajouter plusieur joueurs
+void ajouterPlusieurJoueurs(){
+
+    int n;
+
+    printf("Entrer nombre joueurs :");
+    scanf("%d",&n);
+    getchar();
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("\n Joueur %d\n",i+1);
+        ajouterUnJoueur();
+    }
+    
+
+}
+
+
+// afficher joueurs
 void afficherJoueurs() {
     if (countJoueurs == 0) {
         printf("\n Aucun joueur !!\n");
@@ -70,11 +90,12 @@ void afficherJoueurs() {
 }
 
 int main(){
-ajouterUnJoueur();
-afficherJoueurs();
+
       int choix;
     do{
+        printf("\n-----------------------------------\n");
         printf("\n--- Gestion Equipe de Football ---\n");
+        printf("\n-----------------------------------\n");
         printf("1 - Ajouter joueur\n");
         printf("2 - Modifier joueur\n");
         printf("3 - Supprimer joueur\n");
@@ -83,15 +104,36 @@ afficherJoueurs();
         printf("6 - Rechercher joueur\n");
         printf("7 - Statistiques\n");
         printf("8 - Quitter\n");
-        printf("Entrez votre choix : ");
+        printf("Entrez votre choix : \n");
         scanf("%d",&choix);
         getchar();
 
          switch(choix){
-            case 1:  break;
+            case 1:
+            int ajoutChoix;
+            printf("\n1 - Ajouter un nouveau joueur\n");
+            printf("2 - Ajouter plusieur joueurs\n");
+            scanf("%d",&ajoutChoix);
+            getchar();
+            switch (ajoutChoix)
+            {
+            case 1:
+                ajouterUnJoueur();
+                break;
+
+            case 2:
+                ajouterPlusieurJoueurs();
+                break;
+            
+            default: printf("Choix invalide !\n");
+                break;
+            }
+            break;
+
+
             case 2:  break;
             case 3:  break;
-            case 4:  break;
+            case 4: afficherJoueurs();  break;
             case 5:  break;
             case 6:  break;
             case 7:  break;
