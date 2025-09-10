@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MAX 100
 
@@ -131,11 +132,7 @@ void afficherJoueurs()
 int rechercherJoueurNom(char nomRecherche[50])
 {
 
-     if (countJoueurs == 0)
-    {
-        printf("\n ---------- Aucun joueur--------- !!\n");
-        return;
-    }
+
 
     printf("Entrez le nom du joueur : ");
     fgets(nomRecherche, sizeof(nomRecherche), stdin);
@@ -169,11 +166,6 @@ int rechercherJoueurNom(char nomRecherche[50])
 int rechercherJoueurId(int idRecherche)
 {
 
-    if (countJoueurs == 0)
-    {
-        printf("\n ---------- Aucun joueur--------- !!\n");
-        return;
-    }
 
     printf("Entrez l' ID du joueur : ");
     scanf("%d", &idRecherche);
@@ -205,6 +197,12 @@ int rechercherJoueurId(int idRecherche)
 
 // Recherche Main Function 
 void rechercheFunction(){
+
+    if (countJoueurs == 0)
+    {
+        printf("\n ---------- Aucun joueur--------- !!\n");
+        return;
+    }
 
      char nomRecherche[50];
     int idRecherche;
@@ -270,7 +268,7 @@ afficherJoueurs();
 
 // trier par nom
 void trierParNom(){
-    
+
  if (countJoueurs == 0)
     {
         printf("\n ---------- Aucun joueur--------- !!\n");
@@ -296,6 +294,50 @@ for (int i = 0; i < countJoueurs -1; i++)
         printf("\n-----------------------------------\n");
         printf("\n--- Listes Joueurs Trier Par Nom ---\n");
         printf("\n-----------------------------------\n");
+
+afficherJoueurs();
+
+
+}
+
+// trier par Poste ( Gardien )
+void trierParPosteGardien(){
+
+    
+    char choixPoste[MAX];
+ 
+    if (countJoueurs == 0)
+    {
+        printf("\n ---------- Aucun joueur--------- !!\n");
+        return;
+    }
+
+
+
+     printf("Entrer le poste de joueur :\n");
+    fgets(choixPoste, sizeof(choixPoste), stdin);
+    choixPoste[strcspn(choixPoste, "\n")] = '\0'; // removee enter key from the end
+
+
+for (int i = 0; i < countJoueurs -1; i++)
+{
+    for (int j = 0; j < countJoueurs - i - 1; j++)
+    {
+       if (_stricmp(joueurs[j].poste,choixPoste) != 0 && _stricmp(joueurs[j+1].poste,choixPoste) == 0)
+       {
+        Joueur temp = joueurs[j];
+        joueurs[j] = joueurs[j+1];
+        joueurs[j+1]= temp;
+
+       }
+       
+    }
+    
+}
+
+        printf("\n-------------------------------------------\n");
+        printf("\n--- Listes Joueurs Trier Par Poste Gardien ---\n");
+        printf("\n-------------------------------------------\n");
 
 afficherJoueurs();
 
@@ -341,7 +383,7 @@ int main()
             break;
 
         case 5:
-            trierParNom();
+            trierParPosteGardien();
             break;
 
         case 6:
