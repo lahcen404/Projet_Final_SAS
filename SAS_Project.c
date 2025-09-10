@@ -160,6 +160,31 @@ int rechercherJoueurId(int idRecherche)
     return -1;
 }
 
+// trier par age
+void trierParAge(){
+
+for (int i = 0; i < countJoueurs -1; i++)
+{
+    for (int j = 0; j < countJoueurs - i - 1; j++)
+    {
+       if (joueurs[j].age>joueurs[j+1].age)
+       {
+        int temp = joueurs[j].age;
+        joueurs[j].age = joueurs[j+1].age;
+        joueurs[j+1].age = temp;
+       }
+       
+    }
+    
+}
+
+afficherJoueurs();
+
+
+}
+
+
+
 int main()
 {
 
@@ -225,6 +250,7 @@ int main()
             afficherJoueurs();
             break;
         case 5:
+            trierParAge();
             break;
 
         case 6:
