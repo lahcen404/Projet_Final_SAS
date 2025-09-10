@@ -183,7 +183,28 @@ afficherJoueurs();
 
 }
 
+// trier par nom
+void trierParNom(){
+char temp[MAX];
+for (int i = 0; i < countJoueurs -1; i++)
+{
+    for (int j = 0; j < countJoueurs - i - 1; j++)
+    {
+       if (_stricmp(joueurs[j].nom,joueurs[j+1].nom) > 0)
+       {
+        strcpy(temp,joueurs[j].nom);
+        strcpy(joueurs[j].nom, joueurs[j+1].nom);
+        strcpy(joueurs[j+1].nom, temp);
+       }
+       
+    }
+    
+}
 
+afficherJoueurs();
+
+
+}
 
 int main()
 {
@@ -250,7 +271,7 @@ int main()
             afficherJoueurs();
             break;
         case 5:
-            trierParAge();
+            trierParNom();
             break;
 
         case 6:
