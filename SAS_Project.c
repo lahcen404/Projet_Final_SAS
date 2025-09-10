@@ -374,6 +374,43 @@ afficherJoueurs();
 
 }
 
+
+// trier par Poste ( Millieu )
+void trierParPosteMillieu(){
+
+     
+    if (countJoueurs == 0)
+    {
+        printf("\n ---------- Aucun joueur--------- !!\n");
+        return;
+    }
+
+
+for (int i = 0; i < countJoueurs -1; i++)
+{
+    for (int j = 0; j < countJoueurs - i - 1; j++)
+    {
+       if (_stricmp(joueurs[j].poste,"millieu") != 0 && _stricmp(joueurs[j+1].poste,"millieu") == 0)
+       {
+        Joueur temp = joueurs[j];
+        joueurs[j] = joueurs[j+1];
+        joueurs[j+1]= temp;
+
+       }
+       
+    }
+    
+}
+
+        printf("\n-------------------------------------------\n");
+        printf("\n--- Listes Joueurs Trier Par Poste Millieu ---\n");
+        printf("\n-------------------------------------------\n");
+
+afficherJoueurs();
+
+
+}
+
 int main()
 {
 
@@ -413,7 +450,7 @@ int main()
             break;
 
         case 5:
-            trierParPosteGardien();
+            trierParPosteMillieu();
             break;
 
         case 6:
