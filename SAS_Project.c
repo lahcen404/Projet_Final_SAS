@@ -500,6 +500,12 @@ void afficherJoueursTrier(){
     } while (choixAffichage != 4);
 }
 
+// afficher nombre total des joueurs
+void totalJoueurs(){
+    printf("\n------------------------------\n");
+    printf("\n--------Total Joueurs est %d ----------\n",countJoueurs);
+    printf("\n------------------------------\n");
+}
 int main()
 {
 
@@ -537,11 +543,11 @@ int main()
             break;
 
         case 5:
-            trierParPosteAttaquant();
+            rechercheFunction();
             break;
 
         case 6:
-            rechercheFunction();
+           totalJoueurs();
             break;
 
         case 7:
