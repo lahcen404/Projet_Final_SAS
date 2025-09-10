@@ -11,7 +11,45 @@ typedef struct {
     int buts;
 } Joueur;
 
+Joueur joueurs[MAX];
+int countJoueurs = 0;
+
+
+// ajouter un joueur
+void ajouterUnJoueur(){
+
+    joueurs[countJoueurs].id = countJoueurs + 1;
+
+    printf("Entrer le nom de joueur :\n");
+    fgets(joueurs[countJoueurs].nom,sizeof(joueurs[countJoueurs].nom),stdin);
+
+    printf("Entrer le prenom de joueur :\n");
+    fgets(joueurs[countJoueurs].prenom,sizeof(joueurs[countJoueurs].prenom),stdin);
+
+    printf("Entrer le numero Maillot de joueur :\n");
+    scanf("%d",&joueurs[countJoueurs].numeroMaillot);
+    getchar();
+
+    printf("Entrer le poste de joueur (Gardien, Défenseur, Milieu, Attaquant)) :\n");
+    fgets(joueurs[countJoueurs].poste,sizeof(joueurs[countJoueurs].poste),stdin);
+
+    printf("Entrer l'age de joueur :\n");
+    scanf("%d",&joueurs[countJoueurs].age);
+    getchar();
+
+    printf("Entrer le nombre de buts de joueur :\n");
+    scanf("%d",&joueurs[countJoueurs].buts);
+    getchar();
+
+   
+    countJoueurs++;
+}
+
+
+
+
 int main(){
+ajouterUnJoueur();
 
       int choix;
     do{
