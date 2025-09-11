@@ -277,7 +277,7 @@ void modifierAge(int idJoueur)
 
     index = rechercherJoueurId(idJoueur);
 
-    printf("id index Age modiify est %d\n", index);
+   // printf("id index Age modiify est %d\n", index);
 
     if (index == -1)
     {
@@ -308,7 +308,7 @@ void modifierNbrButs(int idJoueur)
 
     index = rechercherJoueurId(idJoueur);
 
-    printf("id index joueur modiify est %d\n", index);
+   // printf("id index joueur modiify est %d\n", index);
 
     if (index == -1)
     {
@@ -372,6 +372,37 @@ void modifierJoueur()
     } while (choix != 4);
 }
 
+// supprimer un joueur
+void supprimerJoueur(int idJoueur)
+{
+
+    int index = 0;
+
+    printf("\n Enter l' ID de Joueur pour supprimer :\n");
+    scanf("%d", &idJoueur);
+    getchar();
+
+    index = rechercherJoueurId(idJoueur);
+
+    if (index == -1)
+    {
+        printf("\n Aucun joueur !!\n");
+    }
+    else
+    {
+        for (int i = 0; i < countJoueurs - 1; i++)
+        {
+            strcpy(joueurs[index].nom, joueurs[index + 1].nom);
+            strcpy(joueurs[index].nom, joueurs[index + 1].nom);
+            joueurs[index].numeroMaillot = joueurs[index+1].numeroMaillot;
+            strcpy(joueurs[index].nom, joueurs[index + 1].nom);
+            joueurs[index].age = joueurs[index+1].age;
+            joueurs[index].buts = joueurs[index+1].buts;
+        }
+        countJoueurs--;
+        printf("-------- Joueur supprimer avec success !! --------");
+    }
+}
 // trier par age
 void trierParAge()
 {
@@ -656,6 +687,7 @@ void totalJoueurs()
 
 int main()
 {
+    int idJoueur;
 
     int choix;
     do
@@ -685,6 +717,7 @@ int main()
             break;
 
         case 3:
+            supprimerJoueur(idJoueur);
             break;
 
         case 4:
