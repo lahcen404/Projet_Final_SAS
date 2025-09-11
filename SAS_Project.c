@@ -730,11 +730,66 @@ void marquerPlus(int nbrButs){
     }
     
 }
+
+//afficher meilleur buteur
+void afficherMeilleurButeur(){
+
+    int maxButs=joueurs[0].buts;
+        printf("\n========== Liste des meilleurs Joueurs Marquer  ==========\n");
+
+
+    for (int i = 1; i < countJoueurs; i++)
+    {
+        if (maxButs<joueurs[i].buts)
+        {
+            maxButs=joueurs[i].buts;
+        } 
+        
+    }
+    // printf("%d",maxButs);
+
+    for (int i = 0; i < countJoueurs; i++)
+    {
+         if (joueurs[i].buts == maxButs)
+        {
+        printf("\n[Joueur %d]\n", i + 1);
+        printf("ID              : %d\n", joueurs[i].id);
+        printf("Nom             : %s\n", joueurs[i].nom);
+        printf("Prenom          : %s\n", joueurs[i].prenom);
+        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+        printf("Poste           : %s\n", joueurs[i].poste);
+        printf("Age             : %d\n", joueurs[i].age);
+        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+        printf("---------------------------------------\n");
+        }
+    }
+    
+    
+}
+
 int main()
 {
     int idJoueur;
-
     int choix;
+
+    Joueur fakePlayers[] = {
+        {1, "Ronaldo", "Cristiano", 7, "Attaquant", 39, 850},
+        {2, "Messi", "Lionel", 10, "Attaquant", 37, 820},
+        {3, "Neuer", "Manuel", 1, "Gardien", 38, 0},
+        {4, "Ramos", "Sergio", 4, "Defenseur", 39, 120},
+        {5, "Modric", "Luka", 10, "Millieu", 38, 150},
+        {6, "Mbappe", "Kylian", 9, "Attaquant", 26, 300},
+        {7, "Kante", "N'Golo", 6, "Millieu", 33, 40},
+        {8, "VanDijk", "Virgil", 5, "Defenseur", 34, 50}
+    };
+
+    int n = sizeof(fakePlayers) / sizeof(fakePlayers[0]);
+
+    for (int i = 0; i < n; i++) {
+        joueurs[countJoueurs++] = fakePlayers[i];
+    }
+
+    
     do
     {
         printf("\n-----------------------------------\n");
@@ -774,8 +829,7 @@ int main()
             break;
 
         case 6:
-        int nbrButs;
-            marquerPlus(nbrButs);
+        afficherMeilleurButeur();
             break;
 
         case 7:
