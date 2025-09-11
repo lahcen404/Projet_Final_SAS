@@ -767,6 +767,78 @@ void afficherMeilleurButeur(){
     
 }
 
+// afficher joueur plus jeune/agé
+void afficherJoueurPlusJeuneAge(){
+    int jeune = joueurs[0].age;
+    int age = joueurs[0].age;
+
+      for (int i = 1; i < countJoueurs; i++)
+    {
+        if (age<joueurs[i].age)
+        {
+            age=joueurs[i].age;
+        } 
+        
+    }
+    // printf("big age is : %d\n",age);
+
+
+         printf("\n========== Liste de Joueur plus agé  ==========\n");
+
+
+    for (int i = 0; i < countJoueurs; i++)
+    {
+        if (joueurs[i].age == age)
+        {
+            printf("\n[Joueur %d]\n", i + 1);
+        printf("ID              : %d\n", joueurs[i].id);
+        printf("Nom             : %s\n", joueurs[i].nom);
+        printf("Prenom          : %s\n", joueurs[i].prenom);
+        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+        printf("Poste           : %s\n", joueurs[i].poste);
+        printf("Age             : %d\n", joueurs[i].age);
+        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+        printf("---------------------------------------\n");
+        }
+        
+    }
+
+
+       for (int i = 1; i < countJoueurs; i++)
+    {
+        if (jeune>joueurs[i].age)
+        {
+            jeune=joueurs[i].age;
+        } 
+        
+        
+    }
+
+    // printf("small age is : %d\n",jeune);
+
+        printf("\n========== Liste de Joueur plus Jeune  ==========\n");
+
+
+    for (int i = 0; i < countJoueurs; i++)
+    {
+        if (joueurs[i].age == jeune)
+        {
+            printf("\n[Joueur %d]\n", i + 1);
+        printf("ID              : %d\n", joueurs[i].id);
+        printf("Nom             : %s\n", joueurs[i].nom);
+        printf("Prenom          : %s\n", joueurs[i].prenom);
+        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+        printf("Poste           : %s\n", joueurs[i].poste);
+        printf("Age             : %d\n", joueurs[i].age);
+        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+        printf("---------------------------------------\n");
+        }
+        
+    }
+    
+
+}
+
 int main()
 {
     int idJoueur;
@@ -774,11 +846,11 @@ int main()
 
     Joueur fakePlayers[] = {
         {1, "Ronaldo", "Cristiano", 7, "Attaquant", 39, 850},
-        {2, "Messi", "Lionel", 10, "Attaquant", 37, 820},
+        {2, "Messi", "Lionel", 10, "Attaquant", 37, 900},
         {3, "Neuer", "Manuel", 1, "Gardien", 38, 0},
         {4, "Ramos", "Sergio", 4, "Defenseur", 39, 120},
         {5, "Modric", "Luka", 10, "Millieu", 38, 150},
-        {6, "Mbappe", "Kylian", 9, "Attaquant", 26, 300},
+        {6, "Mbappe", "Kylian", 9, "Attaquant", 26, 850},
         {7, "Kante", "N'Golo", 6, "Millieu", 33, 40},
         {8, "VanDijk", "Virgil", 5, "Defenseur", 34, 50}
     };
@@ -829,7 +901,7 @@ int main()
             break;
 
         case 6:
-        afficherMeilleurButeur();
+        afficherJoueurPlusJeuneAge();
             break;
 
         case 7:
