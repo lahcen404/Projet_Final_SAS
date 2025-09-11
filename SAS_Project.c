@@ -264,6 +264,37 @@ void modifierPoste(int idPoste)
     }
 }
 
+// modifier l'age
+void modifierAge(int idAge)
+{
+
+    int nvAge;
+    int index = 0;
+
+    printf("\n Enter l' ID de l'Age pour modifier :\n");
+    scanf("%d", &idAge);
+    getchar();
+
+    index = rechercherJoueurId(idAge);
+
+    printf("id index Age modiify est %d\n", index);
+
+    if (index == -1)
+    {
+        printf("\n Aucun joueur !!\n");
+    }
+    else
+    {
+        printf("Entrer le nouveau Age :\n");
+        scanf("%d",&nvAge);
+        getchar();
+
+        joueurs[index].age = nvAge;
+
+        printf("l'Age modifier avec success !!");
+    }
+}
+
 
 
 // trier par age
@@ -571,7 +602,7 @@ int main()
 
         case 2:
             int idPoste;
-            modifierPoste(idPoste);
+            modifierAge(idPoste);
             break;
 
         case 3:
