@@ -631,7 +631,7 @@ void affichageParPoste()
     } while (choixAffichage != 5);
 }
 
-// afficher les joueur
+// afficher les joueurs
 void afficherJoueursTrier()
 {
 
@@ -703,6 +703,33 @@ void ageMoyenne()
     printf("--------------------------------------------\n");
 }
 
+// afficher Marquer plus but 
+void marquerPlus(int nbrButs){
+
+    printf("Entrer nombre de buts :");
+    scanf("%d",&nbrButs);
+    getchar();
+
+        printf("\n========== Liste des Joueurs plus de %d buts ==========\n",nbrButs);
+
+    for (int i = 0; i < countJoueurs; i++)
+    {
+        if (joueurs[i].buts > nbrButs)
+        {
+        printf("\n[Joueur %d]\n", i + 1);
+        printf("ID              : %d\n", joueurs[i].id);
+        printf("Nom             : %s\n", joueurs[i].nom);
+        printf("Prenom          : %s\n", joueurs[i].prenom);
+        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+        printf("Poste           : %s\n", joueurs[i].poste);
+        printf("Age             : %d\n", joueurs[i].age);
+        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+        printf("---------------------------------------\n");
+        }
+        
+    }
+    
+}
 int main()
 {
     int idJoueur;
@@ -747,7 +774,8 @@ int main()
             break;
 
         case 6:
-            ageMoyenne();
+        int nbrButs;
+            marquerPlus(nbrButs);
             break;
 
         case 7:
