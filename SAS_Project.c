@@ -195,7 +195,7 @@ int rechercherJoueurNom(char nomRecherche[50])
     return -1;
 }
 
-// recherche par Nom
+// recherche par ID
 int rechercherJoueurId(int idRecherche)
 {
 
@@ -227,6 +227,39 @@ int rechercherJoueurId(int idRecherche)
     return -1;
 }
 
+// recherche par age 
+void rechercheParAge(){
+    int minAge;
+    int maxAge;
+
+    printf("Entrer age minimum :\n");
+    scanf("%d",&minAge);
+    getchar();
+
+    printf("Entrer age maximum :\n");
+    scanf("%d",&maxAge);
+    getchar();
+
+    for (int i = 0; i < countJoueurs; i++)
+    {
+        if (joueurs[i].age >= minAge && joueurs[i].age <= maxAge)
+        {
+
+            printf("\n[Joueur %d]\n", i + 1);
+            printf("ID              : %d\n", joueurs[i].id);
+            printf("Nom             : %s\n", joueurs[i].nom);
+            printf("Prenom          : %s\n", joueurs[i].prenom);
+            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+            printf("Poste           : %s\n", joueurs[i].poste);
+            printf("Age             : %d\n", joueurs[i].age);
+            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+            printf("---------------------------------------\n");
+
+           
+        }
+    }
+    
+}
 // Recherche Main Function
 void rechercheFunction()
 {
@@ -243,7 +276,8 @@ void rechercheFunction()
 
     printf("\n1 - Recherche par Nom\n");
     printf("2 - Recherche par ID\n");
-    printf("3 - Quit\n");
+    printf("3 - Recherche par Age\n");
+    printf("4 - Quit\n");
 
     scanf("%d", &rechercheChoix);
     getchar();
@@ -258,8 +292,12 @@ void rechercheFunction()
         break;
 
     case 3:
-        printf("Quit !\n");
+       rechercheParAge();
         break;
+
+    case 4:
+       printf("Quiit !!");
+        break;    
 
     default:
         printf("Choix invalide !\n");
