@@ -165,9 +165,9 @@ int rechercherJoueurNom(char nomRecherche[50])
 int rechercherJoueurId(int idRecherche)
 {
 
-    printf("Entrez l' ID du joueur : ");
-    scanf("%d", &idRecherche);
-    getchar();
+    // printf("Entrez l' ID du joueur : ");
+    // scanf("%d", &idRecherche);
+    // getchar();
 
     // printf("%d", idRecherche);
 
@@ -232,6 +232,40 @@ void rechercheFunction()
         break;
     }
 }
+
+// modifier le poste
+void modifierPoste(int idPoste)
+{
+
+    char nvPoste[MAX];
+    int index = 0;
+
+    printf("\n Enter l' ID de poste pour modifier :\n");
+    scanf("%d", &idPoste);
+    getchar();
+
+    index = rechercherJoueurId(idPoste);
+
+    printf("id index poste modiify est %d\n", index);
+
+    if (index == -1)
+    {
+        printf("\n Aucun joueur !!\n");
+    }
+    else
+    {
+        printf("Entrer le nouveau poste :\n");
+        fgets(nvPoste, sizeof(nvPoste), stdin);
+        nvPoste[strcspn(nvPoste, "\n")] = '\0';
+
+        strcpy(joueurs[index].poste, nvPoste);
+
+        printf("Poste modifier avec success !!");
+    }
+}
+
+
+
 // trier par age
 void trierParAge()
 {
@@ -451,7 +485,7 @@ void affichageParPoste()
             break;
 
         case 5:
-            printf("Quit !!") ;
+            printf("Quit !!");
 
         default:
             printf("Choix invalide !\n");
@@ -460,10 +494,11 @@ void affichageParPoste()
     } while (choixAffichage != 5);
 }
 
-// afficher les joueur 
-void afficherJoueursTrier(){
+// afficher les joueur
+void afficherJoueursTrier()
+{
 
-     int choixAffichage;
+    int choixAffichage;
     do
     {
         printf("\n------------------------------------\n");
@@ -491,7 +526,7 @@ void afficherJoueursTrier(){
             break;
 
         case 4:
-            printf("Quit !!") ;
+            printf("Quit !!");
 
         default:
             printf("Choix invalide !\n");
@@ -501,11 +536,13 @@ void afficherJoueursTrier(){
 }
 
 // afficher nombre total des joueurs
-void totalJoueurs(){
+void totalJoueurs()
+{
     printf("\n------------------------------\n");
-    printf("\n--------Total Joueurs est %d ----------\n",countJoueurs);
+    printf("\n--------Total Joueurs est %d ----------\n", countJoueurs);
     printf("\n------------------------------\n");
 }
+
 int main()
 {
 
@@ -533,6 +570,8 @@ int main()
             break;
 
         case 2:
+            int idPoste;
+            modifierPoste(idPoste);
             break;
 
         case 3:
@@ -547,7 +586,7 @@ int main()
             break;
 
         case 6:
-           totalJoueurs();
+            totalJoueurs();
             break;
 
         case 7:
