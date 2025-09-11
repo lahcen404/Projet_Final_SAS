@@ -265,17 +265,17 @@ void modifierPoste(int idPoste)
 }
 
 // modifier l'age
-void modifierAge(int idAge)
+void modifierAge(int idJoueur)
 {
 
     int nvAge;
     int index = 0;
 
-    printf("\n Enter l' ID de l'Age pour modifier :\n");
-    scanf("%d", &idAge);
+    printf("\n Enter l' ID de Joueur pour modifier l'Age :\n");
+    scanf("%d", &idJoueur);
     getchar();
 
-    index = rechercherJoueurId(idAge);
+    index = rechercherJoueurId(idJoueur);
 
     printf("id index Age modiify est %d\n", index);
 
@@ -292,6 +292,37 @@ void modifierAge(int idAge)
         joueurs[index].age = nvAge;
 
         printf("l'Age modifier avec success !!");
+    }
+}
+
+// modifier nombre de buts
+void modifierNbrButs(int idJoueur)
+{
+
+    int nvNbrButs;
+    int index = 0;
+
+    printf("\n Enter l' ID de Joueur pour modifier le nombre de buts :\n");
+    scanf("%d", &idJoueur);
+    getchar();
+
+    index = rechercherJoueurId(idJoueur);
+
+    printf("id index joueur modiify est %d\n", index);
+
+    if (index == -1)
+    {
+        printf("\n Aucun joueur !!\n");
+    }
+    else
+    {
+        printf("Entrer le nouveau nombre de buts :\n");
+        scanf("%d",&nvNbrButs);
+        getchar();
+
+        joueurs[index].buts = nvNbrButs;
+
+        printf("Nombre de buts modifier avec success !!");
     }
 }
 
@@ -602,7 +633,7 @@ int main()
 
         case 2:
             int idPoste;
-            modifierAge(idPoste);
+            modifierNbrButs(idPoste);
             break;
 
         case 3:
