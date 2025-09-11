@@ -839,6 +839,63 @@ void afficherJoueurPlusJeuneAge(){
 
 }
 
+
+//  Statistiques
+void statistiques(){
+
+    int choix;
+    int nbrButs=0;
+     if (countJoueurs == 0)
+    {
+        printf("\n Aucun joueur !!\n");
+        return;
+    }
+    
+    do
+    {
+        printf("\n------------------------------------\n");
+        printf("\n------ Statistiques :--------\n");
+        printf("\n------------------------------------\n");
+
+        printf("1 - Afficher nombre total joueurs\n");
+        printf("2 - Afficher Age Moyenne des joueurs\n");
+        printf("3 - Afiicher joueurs marquer plus buts\n");
+        printf("4 - Afficher le meilleur buteur\n");
+        printf("5 - Afiicher joueur plus jeune et plus agé\n");
+        printf("6 - Quit\n");
+        scanf("%d", &choix);
+        getchar();
+        switch (choix)
+        {
+        case 1:
+            totalJoueurs();
+            break;
+
+        case 2:
+            ageMoyenne();
+            break;
+
+        case 3:
+            marquerPlus(nbrButs);
+            break;
+
+            case 4:
+            afficherMeilleurButeur();
+            break;
+
+        case 5:
+            afficherJoueurPlusJeuneAge();
+            break;
+
+        case 6:
+            printf("Quit !!");
+
+        default:
+            printf("Choix invalide !\n");
+        }
+
+    } while (choix != 6);
+}
 int main()
 {
     int idJoueur;
@@ -901,7 +958,7 @@ int main()
             break;
 
         case 6:
-        afficherJoueurPlusJeuneAge();
+        statistiques();
             break;
 
         case 7:
