@@ -234,17 +234,17 @@ void rechercheFunction()
 }
 
 // modifier le poste
-void modifierPoste(int idPoste)
+void modifierPoste(int idJoueur)
 {
 
     char nvPoste[MAX];
     int index = 0;
 
     printf("\n Enter l' ID de poste pour modifier :\n");
-    scanf("%d", &idPoste);
+    scanf("%d", &idJoueur);
     getchar();
 
-    index = rechercherJoueurId(idPoste);
+    index = rechercherJoueurId(idJoueur);
 
     printf("id index poste modiify est %d\n", index);
 
@@ -260,7 +260,7 @@ void modifierPoste(int idPoste)
 
         strcpy(joueurs[index].poste, nvPoste);
 
-        printf("Poste modifier avec success !!");
+        printf("Poste modifier avec success !!\n");
     }
 }
 
@@ -286,12 +286,12 @@ void modifierAge(int idJoueur)
     else
     {
         printf("Entrer le nouveau Age :\n");
-        scanf("%d",&nvAge);
+        scanf("%d", &nvAge);
         getchar();
 
         joueurs[index].age = nvAge;
 
-        printf("l'Age modifier avec success !!");
+        printf("l'Age modifier avec success !!\n");
     }
 }
 
@@ -317,16 +317,60 @@ void modifierNbrButs(int idJoueur)
     else
     {
         printf("Entrer le nouveau nombre de buts :\n");
-        scanf("%d",&nvNbrButs);
+        scanf("%d", &nvNbrButs);
         getchar();
 
         joueurs[index].buts = nvNbrButs;
 
-        printf("Nombre de buts modifier avec success !!");
+        printf("Nombre de buts modifier avec success !!\n");
     }
 }
 
+// modifier joueur
+void modifierJoueur()
+{
 
+    int idJoueur;
+    int choix;
+
+    if (countJoueurs == 0)
+    {
+        printf("\n Aucun joueur !!\n");
+        return;
+    }
+
+    do
+    {
+        printf("1 - Modifier Poste\n");
+        printf("2 - Modifier l'Age\n");
+        printf("3 - Modifier nomber de buts\n");
+        printf("4 - Quiit !!\n");
+
+        scanf("%d", &choix);
+        getchar();
+
+        switch (choix)
+        {
+        case 1:
+            modifierPoste(idJoueur);
+            break;
+
+        case 2:
+            modifierAge(idJoueur);
+            break;
+
+        case 3:
+            modifierNbrButs(idJoueur);
+            break;
+
+        case 4:
+            printf("Quit !!");
+            break;
+        default:
+            printf("Choix invalide !\n");
+        }
+    } while (choix != 4);
+}
 
 // trier par age
 void trierParAge()
@@ -560,6 +604,11 @@ void affichageParPoste()
 void afficherJoueursTrier()
 {
 
+    if (countJoueurs == 0)
+    {
+        printf("\n Aucun joueur !!\n");
+        return;
+    }
     int choixAffichage;
     do
     {
@@ -632,8 +681,7 @@ int main()
             break;
 
         case 2:
-            int idPoste;
-            modifierNbrButs(idPoste);
+            modifierJoueur();
             break;
 
         case 3:
