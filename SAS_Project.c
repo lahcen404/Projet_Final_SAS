@@ -35,10 +35,37 @@ void ajouterSeulJoueur()
     printf("Entrer le numero Maillot de joueur :\n");
     scanf("%d", &joueurs[countJoueurs].numeroMaillot);
     getchar();
+int posChoice;
+    do {
+        printf("\nSelect position:\n");
+        printf("1 - gardien\n");
+        printf("2 - defenseur\n");
+        printf("3 - millieu\n");
+        printf("4 - attaquant\n");
+        printf("Enter choice (1-4): ");
+        scanf("%d", &posChoice);
+        getchar();
 
-    printf("Entrer le poste de joueur ([G] = Gardien, [D] = Défenseur, [M] = Millieu,[G] = Attaquant)) :\n");
-    fgets(joueurs[countJoueurs].poste, sizeof(joueurs[countJoueurs].poste), stdin);
-    joueurs[countJoueurs].poste[strcspn(joueurs[countJoueurs].poste, "\n")] = '\0';
+        switch (posChoice) {
+            case 1:
+                strcpy(joueurs[countJoueurs].poste, "gardien");
+                break;
+            case 2:
+                strcpy(joueurs[countJoueurs].poste, "defenseur");
+                break;
+            case 3:
+                strcpy(joueurs[countJoueurs].poste, "millieu");
+                break;
+            case 4:
+                strcpy(joueurs[countJoueurs].poste, "attaquant");
+                break;
+            default:
+                printf("Invalid choice! Try again.\n");
+                posChoice = 0; 
+                break;
+        }
+    } while (posChoice == 0); 
+
 
     printf("Entrer l'age de joueur :\n");
     scanf("%d", &joueurs[countJoueurs].age);
@@ -105,16 +132,13 @@ void ajouterJoueur()
 // afficher joueurs
 void afficherJoueurs()
 {
-    if (countJoueurs == 0)
-    {
+    if (countJoueurs == 0) {
         printf("\n Aucun joueur !!\n");
         return;
     }
 
     printf("\n========== Liste des Joueurs ==========\n");
-
-    for (int i = 0; i < countJoueurs; i++)
-    {
+    for (int i = 0; i < countJoueurs; i++) {
         printf("\n[Joueur %d]\n", i + 1);
         printf("ID              : %d\n", joueurs[i].id);
         printf("Nom             : %s\n", joueurs[i].nom);
@@ -125,7 +149,6 @@ void afficherJoueurs()
         printf("Nombre de Buts  : %d\n", joueurs[i].buts);
         printf("---------------------------------------\n");
     }
-
     printf("=======================================\n");
 }
 
@@ -236,33 +259,54 @@ void rechercheFunction()
 // modifier le poste
 void modifierPoste(int idJoueur)
 {
-
-    char nvPoste[MAX];
+    int nvPoste;
     int index = 0;
 
-    printf("\n Enter l' ID de poste pour modifier :\n");
+    printf("\n Entrer l'ID du joueur pour modifier le poste :\n");
     scanf("%d", &idJoueur);
     getchar();
 
     index = rechercherJoueurId(idJoueur);
 
-    printf("id index poste modiify est %d\n", index);
-
     if (index == -1)
     {
-        printf("\n Aucun joueur !!\n");
+        printf("\n Aucun joueur trouvé !!\n");
     }
     else
     {
-        printf("Entrer le nouveau poste :\n");
-        fgets(nvPoste, sizeof(nvPoste), stdin);
-        nvPoste[strcspn(nvPoste, "\n")] = '\0';
+        do {
+            printf("\nSelect position:\n");
+            printf("1 - gardien\n");
+            printf("2 - defenseur\n");
+            printf("3 - millieu\n");
+            printf("4 - attaquant\n");
+            printf("Enter choice (1-4): ");
+            scanf("%d", &nvPoste);
 
-        strcpy(joueurs[index].poste, nvPoste);
+            switch (nvPoste) {
+                case 1:
+                    strcpy(joueurs[index].poste, "gardien");
+                    break;
+                case 2:
+                    strcpy(joueurs[index].poste, "defenseur");
+                    break;
+                case 3:
+                    strcpy(joueurs[index].poste, "millieu");
+                    break;
+                case 4:
+                    strcpy(joueurs[index].poste, "attaquant");
+                    break;
+                default:
+                    printf("Invalid choice! Try again.\n");
+                    nvPoste = 0; 
+                    break;
+            }
+        } while (nvPoste == 0); 
 
-        printf("Poste modifier avec success !!\n");
+        printf("Poste modifié avec succès !!\n");
     }
 }
+
 
 // modifier l'age
 void modifierAge(int idJoueur)
@@ -406,7 +450,6 @@ void supprimerJoueur(int idJoueur)
 // trier par age
 void trierParAge()
 {
-
     if (countJoueurs == 0)
     {
         printf("\n ---------- Aucun joueur--------- !!\n");
@@ -419,15 +462,15 @@ void trierParAge()
         {
             if (joueurs[j].age > joueurs[j + 1].age)
             {
-                int temp = joueurs[j].age;
-                joueurs[j].age = joueurs[j + 1].age;
-                joueurs[j + 1].age = temp;
+                Joueur temp = joueurs[j];
+                joueurs[j] = joueurs[j + 1];
+                joueurs[j + 1] = temp;
             }
         }
     }
 
     printf("\n-----------------------------------\n");
-    printf("\n--- Listes Joueurs Trier Par Age ---\n");
+    printf("\n--- Liste Joueurs Triée Par Age ---\n");
     printf("\n-----------------------------------\n");
 
     afficherJoueurs();
@@ -436,33 +479,32 @@ void trierParAge()
 // trier par nom
 void trierParNom()
 {
-
     if (countJoueurs == 0)
     {
         printf("\n ---------- Aucun joueur--------- !!\n");
         return;
     }
 
-    char temp[MAX];
     for (int i = 0; i < countJoueurs - 1; i++)
     {
         for (int j = 0; j < countJoueurs - i - 1; j++)
         {
             if (_stricmp(joueurs[j].nom, joueurs[j + 1].nom) > 0)
             {
-                strcpy(temp, joueurs[j].nom);
-                strcpy(joueurs[j].nom, joueurs[j + 1].nom);
-                strcpy(joueurs[j + 1].nom, temp);
+                Joueur temp = joueurs[j];
+                joueurs[j] = joueurs[j + 1];
+                joueurs[j + 1] = temp;
             }
         }
     }
 
     printf("\n-----------------------------------\n");
-    printf("\n--- Listes Joueurs Trier Par Nom ---\n");
+    printf("\n--- Liste Joueurs Triée Par Nom ---\n");
     printf("\n-----------------------------------\n");
 
     afficherJoueurs();
 }
+
 
 // trier par Poste ( Gardien )
 void trierParPosteGardien()
@@ -568,7 +610,7 @@ void trierParPosteAttaquant()
     {
         for (int j = 0; j < countJoueurs - i - 1; j++)
         {
-            if (_stricmp(joueurs[j].poste, "attquant") != 0 && _stricmp(joueurs[j + 1].poste, "attaquant") == 0)
+            if (_stricmp(joueurs[j].poste, "attaquant") != 0 && _stricmp(joueurs[j + 1].poste, "attaquant") == 0)
             {
                 Joueur temp = joueurs[j];
                 joueurs[j] = joueurs[j + 1];
