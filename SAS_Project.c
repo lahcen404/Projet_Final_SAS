@@ -277,7 +277,7 @@ void modifierAge(int idJoueur)
 
     index = rechercherJoueurId(idJoueur);
 
-   // printf("id index Age modiify est %d\n", index);
+    // printf("id index Age modiify est %d\n", index);
 
     if (index == -1)
     {
@@ -308,7 +308,7 @@ void modifierNbrButs(int idJoueur)
 
     index = rechercherJoueurId(idJoueur);
 
-   // printf("id index joueur modiify est %d\n", index);
+    // printf("id index joueur modiify est %d\n", index);
 
     if (index == -1)
     {
@@ -394,10 +394,10 @@ void supprimerJoueur(int idJoueur)
         {
             strcpy(joueurs[index].nom, joueurs[index + 1].nom);
             strcpy(joueurs[index].nom, joueurs[index + 1].nom);
-            joueurs[index].numeroMaillot = joueurs[index+1].numeroMaillot;
+            joueurs[index].numeroMaillot = joueurs[index + 1].numeroMaillot;
             strcpy(joueurs[index].nom, joueurs[index + 1].nom);
-            joueurs[index].age = joueurs[index+1].age;
-            joueurs[index].buts = joueurs[index+1].buts;
+            joueurs[index].age = joueurs[index + 1].age;
+            joueurs[index].buts = joueurs[index + 1].buts;
         }
         countJoueurs--;
         printf("-------- Joueur supprimer avec success !! --------");
@@ -685,6 +685,24 @@ void totalJoueurs()
     printf("\n------------------------------\n");
 }
 
+// afficher age moyenne
+void ageMoyenne()
+{
+
+    int sum = 0;
+    int ageMoyenne = 0;
+
+    for (int i = 0; i < countJoueurs; i++)
+    {
+        sum += joueurs[i].age;
+    }
+    // printf("sum est %d",sum);
+    ageMoyenne = sum / countJoueurs;
+    printf("--------------------------------------------\n");
+    printf("------------Age moyenne des joueurs est : %d-----------\n", ageMoyenne);
+    printf("--------------------------------------------\n");
+}
+
 int main()
 {
     int idJoueur;
@@ -729,7 +747,7 @@ int main()
             break;
 
         case 6:
-            totalJoueurs();
+            ageMoyenne();
             break;
 
         case 7:
