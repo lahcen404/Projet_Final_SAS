@@ -768,7 +768,8 @@ void afficherJoueursTrier()
 
         case 4:
             printf("Quit !!");
-
+        break;
+        
         default:
             printf("Choix invalide !\n");
         }
@@ -974,7 +975,7 @@ void statistiques()
 
         case 6:
             printf("Quit !!");
-
+        break;
         default:
             printf("Choix invalide !\n");
         }
