@@ -35,8 +35,9 @@ void ajouterSeulJoueur()
     printf("Entrer le numero Maillot de joueur :\n");
     scanf("%d", &joueurs[countJoueurs].numeroMaillot);
     getchar();
-int posChoice;
-    do {
+    int posChoice;
+    do
+    {
         printf("\nSelect position:\n");
         printf("1 - gardien\n");
         printf("2 - defenseur\n");
@@ -46,26 +47,26 @@ int posChoice;
         scanf("%d", &posChoice);
         getchar();
 
-        switch (posChoice) {
-            case 1:
-                strcpy(joueurs[countJoueurs].poste, "gardien");
-                break;
-            case 2:
-                strcpy(joueurs[countJoueurs].poste, "defenseur");
-                break;
-            case 3:
-                strcpy(joueurs[countJoueurs].poste, "millieu");
-                break;
-            case 4:
-                strcpy(joueurs[countJoueurs].poste, "attaquant");
-                break;
-            default:
-                printf("Invalid choice! Try again.\n");
-                posChoice = 0; 
-                break;
+        switch (posChoice)
+        {
+        case 1:
+            strcpy(joueurs[countJoueurs].poste, "gardien");
+            break;
+        case 2:
+            strcpy(joueurs[countJoueurs].poste, "defenseur");
+            break;
+        case 3:
+            strcpy(joueurs[countJoueurs].poste, "millieu");
+            break;
+        case 4:
+            strcpy(joueurs[countJoueurs].poste, "attaquant");
+            break;
+        default:
+            printf("Invalid choice! Try again.\n");
+            posChoice = 0;
+            break;
         }
-    } while (posChoice == 0); 
-
+    } while (posChoice == 0);
 
     printf("Entrer l'age de joueur :\n");
     scanf("%d", &joueurs[countJoueurs].age);
@@ -74,6 +75,14 @@ int posChoice;
     printf("Entrer le nombre de buts de joueur :\n");
     scanf("%d", &joueurs[countJoueurs].buts);
     getchar();
+
+    if (joueurs[countJoueurs].buts >= 20)
+    {
+        printf("---------------------------STAR d'equipe----------------------\n");
+        printf("\n| %s %s est le STAR de l'equipe avec %d buts !!!|\n",
+               joueurs[countJoueurs].nom, joueurs[countJoueurs].prenom, joueurs[countJoueurs].buts);
+        printf("-------------------------------------------------------------\n");
+    }
 
     countJoueurs++;
 
@@ -132,13 +141,15 @@ void ajouterJoueur()
 // afficher joueurs
 void afficherJoueurs()
 {
-    if (countJoueurs == 0) {
+    if (countJoueurs == 0)
+    {
         printf("\n Aucun joueur !!\n");
         return;
     }
 
     printf("\n========== Liste des Joueurs ==========\n");
-    for (int i = 0; i < countJoueurs; i++) {
+    for (int i = 0; i < countJoueurs; i++)
+    {
         printf("\n[Joueur %d]\n", i + 1);
         printf("ID              : %d\n", joueurs[i].id);
         printf("Nom             : %s\n", joueurs[i].nom);
@@ -274,7 +285,8 @@ void modifierPoste(int idJoueur)
     }
     else
     {
-        do {
+        do
+        {
             printf("\nSelect position:\n");
             printf("1 - gardien\n");
             printf("2 - defenseur\n");
@@ -283,30 +295,30 @@ void modifierPoste(int idJoueur)
             printf("Enter choice (1-4): ");
             scanf("%d", &nvPoste);
 
-            switch (nvPoste) {
-                case 1:
-                    strcpy(joueurs[index].poste, "gardien");
-                    break;
-                case 2:
-                    strcpy(joueurs[index].poste, "defenseur");
-                    break;
-                case 3:
-                    strcpy(joueurs[index].poste, "millieu");
-                    break;
-                case 4:
-                    strcpy(joueurs[index].poste, "attaquant");
-                    break;
-                default:
-                    printf("Invalid choice! Try again.\n");
-                    nvPoste = 0; 
-                    break;
+            switch (nvPoste)
+            {
+            case 1:
+                strcpy(joueurs[index].poste, "gardien");
+                break;
+            case 2:
+                strcpy(joueurs[index].poste, "defenseur");
+                break;
+            case 3:
+                strcpy(joueurs[index].poste, "millieu");
+                break;
+            case 4:
+                strcpy(joueurs[index].poste, "attaquant");
+                break;
+            default:
+                printf("Invalid choice! Try again.\n");
+                nvPoste = 0;
+                break;
             }
-        } while (nvPoste == 0); 
+        } while (nvPoste == 0);
 
         printf("Poste modifié avec succès !!\n");
     }
 }
-
 
 // modifier l'age
 void modifierAge(int idJoueur)
@@ -365,6 +377,14 @@ void modifierNbrButs(int idJoueur)
         getchar();
 
         joueurs[index].buts = nvNbrButs;
+
+        if (joueurs[index].buts >= 20)
+    {
+        printf("---------------------------STAR d'equipe----------------------\n");
+        printf("\n| %s %s est le STAR de l'equipe avec %d buts !!!|\n",
+               joueurs[index].nom, joueurs[index].prenom, joueurs[index].buts);
+        printf("-------------------------------------------------------------\n");
+    }
 
         printf("Nombre de buts modifier avec success !!\n");
     }
@@ -504,7 +524,6 @@ void trierParNom()
 
     afficherJoueurs();
 }
-
 
 // trier par Poste ( Gardien )
 void trierParPosteGardien()
@@ -745,154 +764,140 @@ void ageMoyenne()
     printf("--------------------------------------------\n");
 }
 
-// afficher Marquer plus but 
-void marquerPlus(int nbrButs){
+// afficher Marquer plus but
+void marquerPlus(int nbrButs)
+{
 
     printf("Entrer nombre de buts :");
-    scanf("%d",&nbrButs);
+    scanf("%d", &nbrButs);
     getchar();
 
-        printf("\n========== Liste des Joueurs plus de %d buts ==========\n",nbrButs);
+    printf("\n========== Liste des Joueurs plus de %d buts ==========\n", nbrButs);
 
     for (int i = 0; i < countJoueurs; i++)
     {
         if (joueurs[i].buts > nbrButs)
         {
-        printf("\n[Joueur %d]\n", i + 1);
-        printf("ID              : %d\n", joueurs[i].id);
-        printf("Nom             : %s\n", joueurs[i].nom);
-        printf("Prenom          : %s\n", joueurs[i].prenom);
-        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-        printf("Poste           : %s\n", joueurs[i].poste);
-        printf("Age             : %d\n", joueurs[i].age);
-        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-        printf("---------------------------------------\n");
+            printf("\n[Joueur %d]\n", i + 1);
+            printf("ID              : %d\n", joueurs[i].id);
+            printf("Nom             : %s\n", joueurs[i].nom);
+            printf("Prenom          : %s\n", joueurs[i].prenom);
+            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+            printf("Poste           : %s\n", joueurs[i].poste);
+            printf("Age             : %d\n", joueurs[i].age);
+            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+            printf("---------------------------------------\n");
         }
-        
     }
-    
 }
 
-//afficher meilleur buteur
-void afficherMeilleurButeur(){
+// afficher meilleur buteur
+void afficherMeilleurButeur()
+{
 
-    int maxButs=joueurs[0].buts;
-        printf("\n========== Liste des meilleurs Joueurs Marquer  ==========\n");
-
+    int maxButs = joueurs[0].buts;
+    printf("\n========== Liste des meilleurs Joueurs Marquer  ==========\n");
 
     for (int i = 1; i < countJoueurs; i++)
     {
-        if (maxButs<joueurs[i].buts)
+        if (maxButs < joueurs[i].buts)
         {
-            maxButs=joueurs[i].buts;
-        } 
-        
+            maxButs = joueurs[i].buts;
+        }
     }
     // printf("%d",maxButs);
 
     for (int i = 0; i < countJoueurs; i++)
     {
-         if (joueurs[i].buts == maxButs)
+        if (joueurs[i].buts == maxButs)
         {
-        printf("\n[Joueur %d]\n", i + 1);
-        printf("ID              : %d\n", joueurs[i].id);
-        printf("Nom             : %s\n", joueurs[i].nom);
-        printf("Prenom          : %s\n", joueurs[i].prenom);
-        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-        printf("Poste           : %s\n", joueurs[i].poste);
-        printf("Age             : %d\n", joueurs[i].age);
-        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-        printf("---------------------------------------\n");
+            printf("\n[Joueur %d]\n", i + 1);
+            printf("ID              : %d\n", joueurs[i].id);
+            printf("Nom             : %s\n", joueurs[i].nom);
+            printf("Prenom          : %s\n", joueurs[i].prenom);
+            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+            printf("Poste           : %s\n", joueurs[i].poste);
+            printf("Age             : %d\n", joueurs[i].age);
+            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+            printf("---------------------------------------\n");
         }
     }
-    
-    
 }
 
 // afficher joueur plus jeune/agé
-void afficherJoueurPlusJeuneAge(){
+void afficherJoueurPlusJeuneAge()
+{
     int jeune = joueurs[0].age;
     int age = joueurs[0].age;
 
-      for (int i = 1; i < countJoueurs; i++)
+    for (int i = 1; i < countJoueurs; i++)
     {
-        if (age<joueurs[i].age)
+        if (age < joueurs[i].age)
         {
-            age=joueurs[i].age;
-        } 
-        
+            age = joueurs[i].age;
+        }
     }
     // printf("big age is : %d\n",age);
 
-
-         printf("\n========== Liste de Joueur plus agé  ==========\n");
-
+    printf("\n========== Liste de Joueur plus agé  ==========\n");
 
     for (int i = 0; i < countJoueurs; i++)
     {
         if (joueurs[i].age == age)
         {
             printf("\n[Joueur %d]\n", i + 1);
-        printf("ID              : %d\n", joueurs[i].id);
-        printf("Nom             : %s\n", joueurs[i].nom);
-        printf("Prenom          : %s\n", joueurs[i].prenom);
-        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-        printf("Poste           : %s\n", joueurs[i].poste);
-        printf("Age             : %d\n", joueurs[i].age);
-        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-        printf("---------------------------------------\n");
+            printf("ID              : %d\n", joueurs[i].id);
+            printf("Nom             : %s\n", joueurs[i].nom);
+            printf("Prenom          : %s\n", joueurs[i].prenom);
+            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+            printf("Poste           : %s\n", joueurs[i].poste);
+            printf("Age             : %d\n", joueurs[i].age);
+            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+            printf("---------------------------------------\n");
         }
-        
     }
 
-
-       for (int i = 1; i < countJoueurs; i++)
+    for (int i = 1; i < countJoueurs; i++)
     {
-        if (jeune>joueurs[i].age)
+        if (jeune > joueurs[i].age)
         {
-            jeune=joueurs[i].age;
-        } 
-        
-        
+            jeune = joueurs[i].age;
+        }
     }
 
     // printf("small age is : %d\n",jeune);
 
-        printf("\n========== Liste de Joueur plus Jeune  ==========\n");
-
+    printf("\n========== Liste de Joueur plus Jeune  ==========\n");
 
     for (int i = 0; i < countJoueurs; i++)
     {
         if (joueurs[i].age == jeune)
         {
             printf("\n[Joueur %d]\n", i + 1);
-        printf("ID              : %d\n", joueurs[i].id);
-        printf("Nom             : %s\n", joueurs[i].nom);
-        printf("Prenom          : %s\n", joueurs[i].prenom);
-        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-        printf("Poste           : %s\n", joueurs[i].poste);
-        printf("Age             : %d\n", joueurs[i].age);
-        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-        printf("---------------------------------------\n");
+            printf("ID              : %d\n", joueurs[i].id);
+            printf("Nom             : %s\n", joueurs[i].nom);
+            printf("Prenom          : %s\n", joueurs[i].prenom);
+            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+            printf("Poste           : %s\n", joueurs[i].poste);
+            printf("Age             : %d\n", joueurs[i].age);
+            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+            printf("---------------------------------------\n");
         }
-        
     }
-    
-
 }
 
-
 //  Statistiques
-void statistiques(){
+void statistiques()
+{
 
     int choix;
-    int nbrButs=0;
-     if (countJoueurs == 0)
+    int nbrButs = 0;
+    if (countJoueurs == 0)
     {
         printf("\n Aucun joueur !!\n");
         return;
     }
-    
+
     do
     {
         printf("\n------------------------------------\n");
@@ -921,7 +926,7 @@ void statistiques(){
             marquerPlus(nbrButs);
             break;
 
-            case 4:
+        case 4:
             afficherMeilleurButeur();
             break;
 
@@ -951,16 +956,15 @@ int main()
         {5, "Modric", "Luka", 10, "Millieu", 38, 150},
         {6, "Mbappe", "Kylian", 9, "Attaquant", 26, 850},
         {7, "Kante", "N'Golo", 6, "Millieu", 33, 40},
-        {8, "VanDijk", "Virgil", 5, "Defenseur", 34, 50}
-    };
+        {8, "VanDijk", "Virgil", 5, "Defenseur", 34, 50}};
 
     int n = sizeof(fakePlayers) / sizeof(fakePlayers[0]);
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         joueurs[countJoueurs++] = fakePlayers[i];
     }
 
-    
     do
     {
         printf("\n-----------------------------------\n");
@@ -1000,7 +1004,7 @@ int main()
             break;
 
         case 6:
-        statistiques();
+            statistiques();
             break;
 
         case 7:
