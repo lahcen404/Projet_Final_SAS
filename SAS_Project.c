@@ -563,125 +563,86 @@ void trierParNom()
     afficherJoueurs();
 }
 
-// trier par Poste ( Gardien )
+// fonction affiche un groupe
+void afficherParPoste(char poste[])
+{
+    for (int i = 0; i < countJoueurs; i++)
+    {
+        if (_stricmp(joueurs[i].poste, poste) == 0)
+        {
+            printf("\n[Joueur %d]\n", i + 1);
+            printf("ID              : %d\n", joueurs[i].id);
+            printf("Nom             : %s\n", joueurs[i].nom);
+            printf("Prenom          : %s\n", joueurs[i].prenom);
+            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
+            printf("Poste           : %s\n", joueurs[i].poste);
+            printf("Age             : %d\n", joueurs[i].age);
+            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
+            printf("---------------------------------------\n");
+        }
+    }
+}
+
+// trier par poste (Gardien)
 void trierParPosteGardien()
 {
-
     if (countJoueurs == 0)
     {
         printf("\n ---------- Aucun joueur--------- !!\n");
         return;
     }
 
-    for (int i = 0; i < countJoueurs - 1; i++)
-    {
-        for (int j = 0; j < countJoueurs - i - 1; j++)
-        {
-            if (_stricmp(joueurs[j].poste, "gardien") != 0 && _stricmp(joueurs[j + 1].poste, "gardien") == 0)
-            {
-                Joueur temp = joueurs[j];
-                joueurs[j] = joueurs[j + 1];
-                joueurs[j + 1] = temp;
-            }
-        }
-    }
+    printf("\n--- Gardiens ---\n");
+    afficherParPoste("gardien");
 
-    printf("\n-------------------------------------------\n");
-    printf("\n--- Listes Joueurs Trier Par Poste Gardien ---\n");
-    printf("\n-------------------------------------------\n");
-
-    afficherJoueurs();
+    printf("\n--- Autres ---\n");
+    afficherParPoste("defenseur");
+    afficherParPoste("millieu");
+    afficherParPoste("attaquant");
 }
 
-// trier par Poste ( defenseur )
+// trier par poste (Deffenseur)
 void trierParPosteDefenseur()
 {
+    if (countJoueurs == 0) { printf("\n ---------- Aucun joueur--------- !!\n"); return; }
 
-    if (countJoueurs == 0)
-    {
-        printf("\n ---------- Aucun joueur--------- !!\n");
-        return;
-    }
+    printf("\n--- Defenseurs ---\n");
+    afficherParPoste("defenseur");
 
-    for (int i = 0; i < countJoueurs - 1; i++)
-    {
-        for (int j = 0; j < countJoueurs - i - 1; j++)
-        {
-            if (_stricmp(joueurs[j].poste, "defenseur") != 0 && _stricmp(joueurs[j + 1].poste, "defenseur") == 0)
-            {
-                Joueur temp = joueurs[j];
-                joueurs[j] = joueurs[j + 1];
-                joueurs[j + 1] = temp;
-            }
-        }
-    }
-
-    printf("\n-------------------------------------------\n");
-    printf("\n--- Listes Joueurs Trier Par Poste Defenseur ---\n");
-    printf("\n-------------------------------------------\n");
-
-    afficherJoueurs();
+    printf("\n--- Autres ---\n");
+    afficherParPoste("gardien");
+    afficherParPoste("millieu");
+    afficherParPoste("attaquant");
 }
 
-// trier par Poste ( Millieu )
+// trier par poste (Millieu)
 void trierParPosteMillieu()
 {
+    if (countJoueurs == 0) { printf("\n ---------- Aucun joueur--------- !!\n"); return; }
 
-    if (countJoueurs == 0)
-    {
-        printf("\n ---------- Aucun joueur--------- !!\n");
-        return;
-    }
+    printf("\n--- Milieux ---\n");
+    afficherParPoste("millieu");
 
-    for (int i = 0; i < countJoueurs - 1; i++)
-    {
-        for (int j = 0; j < countJoueurs - i - 1; j++)
-        {
-            if (_stricmp(joueurs[j].poste, "millieu") != 0 && _stricmp(joueurs[j + 1].poste, "millieu") == 0)
-            {
-                Joueur temp = joueurs[j];
-                joueurs[j] = joueurs[j + 1];
-                joueurs[j + 1] = temp;
-            }
-        }
-    }
-
-    printf("\n-------------------------------------------\n");
-    printf("\n--- Listes Joueurs Trier Par Poste Millieu ---\n");
-    printf("\n-------------------------------------------\n");
-
-    afficherJoueurs();
+    printf("\n--- Autres ---\n");
+    afficherParPoste("gardien");
+    afficherParPoste("defenseur");
+    afficherParPoste("attaquant");
 }
 
-// trier par Poste ( Attaquant )
+// trier par poste (Attaquant)
 void trierParPosteAttaquant()
 {
+    if (countJoueurs == 0) { printf("\n ---------- Aucun joueur--------- !!\n"); return; }
 
-    if (countJoueurs == 0)
-    {
-        printf("\n ---------- Aucun joueur--------- !!\n");
-        return;
-    }
+    printf("\n--- Attaquants ---\n");
+    afficherParPoste("attaquant");
 
-    for (int i = 0; i < countJoueurs - 1; i++)
-    {
-        for (int j = 0; j < countJoueurs - i - 1; j++)
-        {
-            if (_stricmp(joueurs[j].poste, "attaquant") != 0 && _stricmp(joueurs[j + 1].poste, "attaquant") == 0)
-            {
-                Joueur temp = joueurs[j];
-                joueurs[j] = joueurs[j + 1];
-                joueurs[j + 1] = temp;
-            }
-        }
-    }
-
-    printf("\n-------------------------------------------\n");
-    printf("\n--- Listes Joueurs Trier Par Poste Attaquant ---\n");
-    printf("\n-------------------------------------------\n");
-
-    afficherJoueurs();
+    printf("\n--- Autres ---\n");
+    afficherParPoste("gardien");
+    afficherParPoste("defenseur");
+    afficherParPoste("millieu");
 }
+
 
 // main function Affichage par Poste
 void affichageParPoste()
