@@ -138,6 +138,20 @@ void ajouterJoueur()
     }
 }
 
+// afficher un joueur
+void afficherUnJoueur(int index)
+{
+    printf("\n[Joueur %d]\n", index + 1);
+    printf("ID              : %d\n", joueurs[index].id);
+    printf("Nom             : %s\n", joueurs[index].nom);
+    printf("Prenom          : %s\n", joueurs[index].prenom);
+    printf("Numero Maillot  : %d\n", joueurs[index].numeroMaillot);
+    printf("Poste           : %s\n", joueurs[index].poste);
+    printf("Age             : %d\n", joueurs[index].age);
+    printf("Nombre de Buts  : %d\n", joueurs[index].buts);
+    printf("---------------------------------------\n");
+}
+
 // afficher joueurs
 void afficherJoueurs()
 {
@@ -150,15 +164,7 @@ void afficherJoueurs()
     printf("\n========== Liste des Joueurs ==========\n");
     for (int i = 0; i < countJoueurs; i++)
     {
-        printf("\n[Joueur %d]\n", i + 1);
-        printf("ID              : %d\n", joueurs[i].id);
-        printf("Nom             : %s\n", joueurs[i].nom);
-        printf("Prenom          : %s\n", joueurs[i].prenom);
-        printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-        printf("Poste           : %s\n", joueurs[i].poste);
-        printf("Age             : %d\n", joueurs[i].age);
-        printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-        printf("---------------------------------------\n");
+        afficherUnJoueur(i);
     }
     printf("=======================================\n");
 }
@@ -178,15 +184,7 @@ int rechercherJoueurNom(char nomRecherche[50])
         if (strcasecmp(joueurs[i].nom, nomRecherche) == 0)
         {
 
-            printf("\n[Joueur %d]\n", i + 1);
-            printf("ID              : %d\n", joueurs[i].id);
-            printf("Nom             : %s\n", joueurs[i].nom);
-            printf("Prenom          : %s\n", joueurs[i].prenom);
-            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-            printf("Poste           : %s\n", joueurs[i].poste);
-            printf("Age             : %d\n", joueurs[i].age);
-            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-            printf("---------------------------------------\n");
+            afficherUnJoueur(i);
 
             return i;
         }
@@ -210,15 +208,7 @@ int rechercherJoueurId(int idRecherche)
         if (joueurs[i].id == idRecherche)
         {
 
-            printf("\n[Joueur %d]\n", i + 1);
-            printf("ID              : %d\n", joueurs[i].id);
-            printf("Nom             : %s\n", joueurs[i].nom);
-            printf("Prenom          : %s\n", joueurs[i].prenom);
-            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-            printf("Poste           : %s\n", joueurs[i].poste);
-            printf("Age             : %d\n", joueurs[i].age);
-            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-            printf("---------------------------------------\n");
+            afficherUnJoueur(i);
 
             return i;
         }
@@ -245,15 +235,7 @@ void rechercheParAge(){
         if (joueurs[i].age >= minAge && joueurs[i].age <= maxAge)
         {
 
-            printf("\n[Joueur %d]\n", i + 1);
-            printf("ID              : %d\n", joueurs[i].id);
-            printf("Nom             : %s\n", joueurs[i].nom);
-            printf("Prenom          : %s\n", joueurs[i].prenom);
-            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-            printf("Poste           : %s\n", joueurs[i].poste);
-            printf("Age             : %d\n", joueurs[i].age);
-            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-            printf("---------------------------------------\n");
+           afficherUnJoueur(i);
 
            
         }
@@ -570,15 +552,7 @@ void afficherParPoste(char poste[])
     {
         if (_stricmp(joueurs[i].poste, poste) == 0)
         {
-            printf("\n[Joueur %d]\n", i + 1);
-            printf("ID              : %d\n", joueurs[i].id);
-            printf("Nom             : %s\n", joueurs[i].nom);
-            printf("Prenom          : %s\n", joueurs[i].prenom);
-            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-            printf("Poste           : %s\n", joueurs[i].poste);
-            printf("Age             : %d\n", joueurs[i].age);
-            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-            printf("---------------------------------------\n");
+            afficherUnJoueur(i);
         }
     }
 }
@@ -683,9 +657,11 @@ void affichageParPoste()
 
         case 5:
             printf("Quit !!");
+        break;
 
         default:
             printf("Choix invalide !\n");
+        break;
         }
 
     } while (choixAffichage != 5);
@@ -733,6 +709,7 @@ void afficherJoueursTrier()
         
         default:
             printf("Choix invalide !\n");
+        break;
         }
 
     } while (choixAffichage != 4);
@@ -778,15 +755,7 @@ void marquerPlus(int nbrButs)
     {
         if (joueurs[i].buts > nbrButs)
         {
-            printf("\n[Joueur %d]\n", i + 1);
-            printf("ID              : %d\n", joueurs[i].id);
-            printf("Nom             : %s\n", joueurs[i].nom);
-            printf("Prenom          : %s\n", joueurs[i].prenom);
-            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-            printf("Poste           : %s\n", joueurs[i].poste);
-            printf("Age             : %d\n", joueurs[i].age);
-            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-            printf("---------------------------------------\n");
+            afficherUnJoueur(i);
         }
     }
 }
@@ -811,15 +780,7 @@ void afficherMeilleurButeur()
     {
         if (joueurs[i].buts == maxButs)
         {
-            printf("\n[Joueur %d]\n", i + 1);
-            printf("ID              : %d\n", joueurs[i].id);
-            printf("Nom             : %s\n", joueurs[i].nom);
-            printf("Prenom          : %s\n", joueurs[i].prenom);
-            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-            printf("Poste           : %s\n", joueurs[i].poste);
-            printf("Age             : %d\n", joueurs[i].age);
-            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-            printf("---------------------------------------\n");
+           afficherUnJoueur(i);
         }
     }
 }
@@ -845,15 +806,7 @@ void afficherJoueurPlusJeuneAge()
     {
         if (joueurs[i].age == age)
         {
-            printf("\n[Joueur %d]\n", i + 1);
-            printf("ID              : %d\n", joueurs[i].id);
-            printf("Nom             : %s\n", joueurs[i].nom);
-            printf("Prenom          : %s\n", joueurs[i].prenom);
-            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-            printf("Poste           : %s\n", joueurs[i].poste);
-            printf("Age             : %d\n", joueurs[i].age);
-            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-            printf("---------------------------------------\n");
+            afficherUnJoueur(i);
         }
     }
 
@@ -873,15 +826,7 @@ void afficherJoueurPlusJeuneAge()
     {
         if (joueurs[i].age == jeune)
         {
-            printf("\n[Joueur %d]\n", i + 1);
-            printf("ID              : %d\n", joueurs[i].id);
-            printf("Nom             : %s\n", joueurs[i].nom);
-            printf("Prenom          : %s\n", joueurs[i].prenom);
-            printf("Numero Maillot  : %d\n", joueurs[i].numeroMaillot);
-            printf("Poste           : %s\n", joueurs[i].poste);
-            printf("Age             : %d\n", joueurs[i].age);
-            printf("Nombre de Buts  : %d\n", joueurs[i].buts);
-            printf("---------------------------------------\n");
+            afficherUnJoueur(i);
         }
     }
 }
@@ -939,6 +884,7 @@ void statistiques()
         break;
         default:
             printf("Choix invalide !\n");
+        break;
         }
 
     } while (choix != 6);
